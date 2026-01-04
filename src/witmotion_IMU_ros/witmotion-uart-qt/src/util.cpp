@@ -79,6 +79,14 @@ uint8_t witmotion_baud_rate(const QSerialPort::BaudRate rate)
         return 0x05;
     case QSerialPort::Baud115200:
         return 0x06;
+    // === 新增高波特率支持 ===
+    case static_cast<QSerialPort::BaudRate>(230400):
+        return 0x07;
+    case static_cast<QSerialPort::BaudRate>(460800):
+        return 0x08;
+    case static_cast<QSerialPort::BaudRate>(921600):
+        return 0x09;
+    // ========================        
     case QSerialPort::Baud9600:
     default:
         return 0x02;

@@ -158,7 +158,14 @@ void QBaseSerialWitmotionSensorReader::RunPoll()
     poll_timer->setTimerType(Qt::TimerType::PreciseTimer);
     if(!user_defined_return_interval)
     {
-        return_interval = (port_rate == QSerialPort::Baud9600) ? 50 : 30;
+        if(port_rate >= 460800)
+            return_interval = 5;  // 高波特率用更短间隔
+        else if(port_rate >= 115200)
+            return_interval = 10;
+        else if(port_rate == QSerialPort::Baud9600)
+            return_interval = 50;
+        else
+            return_interval = 30;
     }
     poll_timer->setInterval(return_interval);
     if(!user_defined_timeout)

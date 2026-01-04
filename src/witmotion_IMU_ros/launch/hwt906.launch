@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="witmotion_ros" type="witmotion_ros_node" name="witmotion_imu" output="screen">
+        <rosparam file="$(find witmotion_ros)/config/hwt906.yml" command="load"/>
+    </node>
+</launch>
